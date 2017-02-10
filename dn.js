@@ -1,17 +1,17 @@
 /*
- * @Author: tanbei
- * @Date:   2016-07-27 10:56:58
- * @Last Modified by:   tanbei
- * @Last Modified time: 2016-07-27 11:18:01
+ * @Author: jones
+ * @Date:   2017-02-10 19:00:58
+ * @Last Modified by:   jones
+ * @Last Modified time: 2017-02-10 19:00:58
  */
 !(function($) {
     'use strict';
 
-    var apkUrlWeixin = "http://a.app.qq.com/o/simple.jsp?pkgname=cn.etouch.ecalendar&g_f=991649&ssy_action=zhwnl-cn-mobile",
-        apkUrlWp = "http://www.windowsphone.com/zh-cn/store/app/%E4%B8%AD%E5%8D%8E%E4%B8%87%E5%B9%B4%E5%8E%86/b9cbc8c3-c2a5-4744-9d8e-a2169d5abc4f",
-        apkUrlInit = 'http://ustatic.ufile.ucloud.com.cn/zhwnl-latest_2016051674181.apk?t=' + parseInt(new Date().getTime() / 21600000),
+    var apkUrlWeixin = "http://a.app.qq.com/o/simple.jsp?pkgname=****",
+        apkUrlWp = "http://www.windowsphone.com/zh-cn/store/app/***",
+        apkUrlInit = 'http://ustatic.ufile.ucloud.com.cn/****.apk?t=' + parseInt(new Date().getTime() / 21600000),
         apkUrlAndroid = apkUrlInit,
-        apkUrlIphone = "https://lnk0.com/IRBtgk";
+        apkUrlIphone = "https://itunes.apple.com";
     var channel = GetQueryString("channel");
 
     var userAgent = navigator.userAgent.toLowerCase();
@@ -55,7 +55,7 @@
             } else {
                 window.location.href = platform.ios ? apkUrlIphone : apkUrlAndroid;
             }
-            //window.location.href = 'https://lkme.cc/KrC/MYALcGFF9';
+            
         });
     });
 
@@ -69,12 +69,12 @@
             success: function(data) {
                 if (data) {
                     apkUrlAndroid = data.android == "" ? apkUrlInit : data.android;
-                    apkUrlIphone = data.iphone == "" ? "https://itunes.apple.com/cn/app/zhong-hua-wan-nian-li-ri-li/id494776019?mt=8" : data.iphone;
+                    apkUrlIphone = data.iphone == "" ? "https://itunes.apple.com/cn/app/****" : data.iphone;
                     apkUrlInit = data.initialization == "" ? apkUrlInit : data.initialization;
-                    apkUrlWp = data.wp == "" ? "http://www.windowsphone.com/zh-cn/store/app/%E4%B8%AD%E5%8D%8E%E4%B8%87%E5%B9%B4%E5%8E%86/b9cbc8c3-c2a5-4744-9d8e-a2169d5abc4f" : data.wp;
+                    apkUrlWp = data.wp == "" ? "http://www.windowsphone.com/zh-cn/store/****" : data.wp;
                     var todownload = typeof(data.toDownload) == "undefined" ? 0 : data.toDownload;
 
-                    //·Ç¿ìÂíä¯ÀÀÆ÷£¬¿ªÆô×Ô¶¯ÏÂÔØ£¬ÈıÃëÖ®ºó×Ô¶¯ÏÂÔØ
+                    //éå¿«é©¬æµè§ˆå™¨ï¼Œå¼€å¯è‡ªåŠ¨ä¸‹è½½ï¼Œä¸‰ç§’ä¹‹åè‡ªåŠ¨ä¸‹è½½
                     if (todownload == 1 && !browser.kuaima) {
                         setTimeout(function() {
                             if (browser.wechat) {
@@ -103,7 +103,7 @@
         });
     }
 
-    //»ñÈ¡url²ÎÊıÖµ
+    //è·å–urlå‚æ•°å€¼
     function GetQueryString(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
         var r = window.location.search.substr(1).match(reg);
@@ -111,19 +111,5 @@
         return null;
     }
 
-    //²»ÖªµÀÎªÊ²Ã´·ÅÔÚÕâ¸öÎÄ¼şÀïÃæ£¬¸úÏÂÔØÎŞ¹ØµÄ´úÂë¡£¡£¡£¡£
-    var updateOrientation = function() {
-        var orientation = window.orientation;
-        switch (orientation) {
-            case 90:
-                $('.mask').show();
-                break;
-            case -90:
-                $('.mask').show();
-                break;
-            default:
-                $('.mask').hide();
-                break;
-        }
-    };
+    
 })(window.jQuery || window.Zepto);
